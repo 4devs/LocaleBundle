@@ -1,0 +1,33 @@
+{
+    "name": "fdevs/locale-bundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "description": "Bundle for working with different languages",
+    "homepage": "https://github.com/4devs/LocaleBundle",
+    "keywords": [
+        "languages",
+        "locale"
+    ],
+    "authors": [
+        {
+            "name": "Samusev Andrey",
+            "email": "andrey_simfi@list.ru",
+            "homepage": "http://andrey.4devs.io/"
+        },
+        {
+            "name": "4devs Community",
+            "homepage": "https://github.com/4devs/LocaleBundle/contributors"
+        }
+    ],
+    "require-dev": {},
+    "require": {
+        "fdevs/locale": "~1.0"
+    },
+    "suggest": {
+        "doctrine/mongodb-odm-bundle": "to use with mongodb bundle",
+        "jms/serializer-bundle": "to use with serializer"
+    },
+    "autoload": {
+        "psr-4": {"FDevs\\LocaleBundle\\": ""}
+    }
+}
