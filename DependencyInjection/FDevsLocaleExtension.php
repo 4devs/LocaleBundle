@@ -23,12 +23,14 @@ class FDevsLocaleExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
+        $container->setParameter($this->getAlias().'.allowed_locales', $config['allowed_locales']);
+
         if (isset($config['db'])) {
-            $container->setParameter($this->getAlias() . '.model_manager_name', $config['db']['manager_name']);
-            $container->setParameter($this->getAlias() . '.backend_type_' . $config['db']['driver'], true);
-            $loader->load($config['db']['driver'] . '.xml');
+            $container->setParameter($this->getAlias().'.model_manager_name', $config['db']['manager_name']);
+            $container->setParameter($this->getAlias().'.backend_type_'.$config['db']['driver'], true);
+            $loader->load($config['db']['driver'].'.xml');
         }
 
-        $loader->load('services.xml');
+        $loader->load('form.xml');
     }
 }

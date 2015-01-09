@@ -23,6 +23,9 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->append($this->dbDriver())
+                ->arrayNode('allowed_locales')
+                    ->requiresAtLeastOneElement()->defaultValue(['en'])->prototype('scalar')->end()
+                ->end()
             ->end();
 
         return $treeBuilder;
@@ -35,6 +38,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('db');
 
         $rootNode
+            ->addDefaultsIfNotSet()
             ->children()
                 ->scalarNode('driver')
                     ->defaultValue('mongodb')
@@ -49,5 +53,4 @@ class Configuration implements ConfigurationInterface
 
         return $rootNode;
     }
-
 }

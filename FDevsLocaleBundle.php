@@ -27,7 +27,7 @@ class FDevsLocaleBundle extends Bundle
     {
         $refl = new \ReflectionClass('FDevs\Locale\LocaleTextInterface');
 
-        $mappings = [realpath(dirname($refl->getFileName()) . '/Resources/doctrine/model') => 'FDevs\Locale\Model'];
+        $mappings = [realpath(dirname($refl->getFileName()).'/Resources/doctrine/model') => 'FDevs\Locale\Model'];
 
         if (class_exists('Doctrine\Bundle\MongoDBBundle\DependencyInjection\Compiler\DoctrineMongoDBMappingsPass')) {
             $container->addCompilerPass(
@@ -38,7 +38,5 @@ class FDevsLocaleBundle extends Bundle
                 )
             );
         }
-
     }
-
 }

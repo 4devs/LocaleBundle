@@ -2,7 +2,6 @@
 
 namespace FDevs\LocaleBundle\DependencyInjection\Compiler;
 
-
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -23,9 +22,8 @@ class SerializerPass implements CompilerPassInterface
         }
         if (!isset($arg['FDevs\Locale'])) {
             $refl = new \ReflectionClass('FDevs\Locale\LocaleTextInterface');
-            $arg['FDevs\Locale'] = dirname($refl->getFileName()) . '/Resources/config/serializer';
+            $arg['FDevs\Locale'] = dirname($refl->getFileName()).'/Resources/config/serializer';
             $def->replaceArgument(0, $arg);
         }
     }
-
 }
