@@ -22,6 +22,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->scalarNode('manager_registry')->defaultNull()->end()
                 ->append($this->dbDriver())
                 ->arrayNode('allowed_locales')
                     ->requiresAtLeastOneElement()->defaultValue(['en'])->prototype('scalar')->end()
