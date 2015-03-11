@@ -26,6 +26,7 @@ class FDevsLocaleExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator([__DIR__ . '/../Resources/config', realpath(dirname($refl->getFileName()) . '/Resources/config')]));
 
         $container->setParameter($this->getAlias() . '.allowed_locales', $config['allowed_locales']);
+        $container->setParameter($this->getAlias() . '.translator_extensions', $config['translator_extensions']);
 
         if (isset($config['db'])) {
             $container->setParameter($this->getAlias() . '.model_manager_name', $config['db']['manager_name']);
@@ -37,6 +38,7 @@ class FDevsLocaleExtension extends Extension
             $loader->load('validator.xml');
         }
 
+        $loader->load('twig_extensions.xml');
         $loader->load('form.xml');
     }
 }

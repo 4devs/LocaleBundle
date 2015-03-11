@@ -27,6 +27,9 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('allowed_locales')
                     ->requiresAtLeastOneElement()->defaultValue(['en'])->prototype('scalar')->end()
                 ->end()
+                ->arrayNode('translator_extensions')
+                    ->defaultValue([])->prototype('scalar')->end()
+                ->end()
             ->end();
 
         return $treeBuilder;
