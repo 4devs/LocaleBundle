@@ -33,5 +33,4 @@ class TranslatorExtension extends BaseExtension implements ContainerAwareInterfa
 
         return $locale;
     }
-
 }
