@@ -49,3 +49,19 @@ public function registerBundles()
 ```
 
 ### Step 3: Use the bundle
+
+### Step 4: Redirect to locale route
+
+add you route
+
+```yml
+#app/config/routing.yml
+home_redirect:
+    pattern: /
+    defaults:
+        _controller: FDevs:LocaleBundle:Locale:switch
+        route: f_devs_core_homepage
+        statusCode: 301
+        useReferrer: false
+
+```
