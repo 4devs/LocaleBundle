@@ -27,6 +27,8 @@ class FDevsLocaleExtension extends Extension
 
         $container->setParameter($this->getAlias().'.allowed_locales', $config['allowed_locales']);
 
+        $loader->load('service.xml');
+
         if (isset($config['db'])) {
             $container->setParameter($this->getAlias().'.model_manager_name', $config['db']['manager_name']);
             $container->setParameter($this->getAlias().'.backend_type_'.$config['db']['driver'], true);
