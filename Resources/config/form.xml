@@ -4,25 +4,32 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <parameter key="f_devs_locale.form.type.locale.class">FDevs\Locale\Form\Type\LocaleType</parameter>
+        <parameter key="f_devs_locale.form.type.trans.class">FDevs\Locale\Form\Type\TransType</parameter>
         <parameter key="f_devs_locale.form.type.locale_text.class">FDevs\Locale\Form\Type\LocaleTextType</parameter>
-        <parameter key="f_devs_locale.form.type.translatable.class">FDevs\Locale\Form\Type\TranslatableType</parameter>
+        <parameter key="f_devs_locale.form.type.trans_text.class">FDevs\Locale\Form\Type\TransTextType</parameter>
+        <parameter key="f_devs_locale.form.type.trans_textarea.class">FDevs\Locale\Form\Type\TransTextareaType</parameter>
     </parameters>
 
     <services>
 
-        <service id="f_devs_locale.form.type.translatable" class="%f_devs_locale.form.type.translatable.class%">
-            <tag name="form.type" alias="fdevs_translatable"/>
+        <service id="f_devs_locale.form.type.trans" class="%f_devs_locale.form.type.trans.class%">
+            <tag name="form.type" alias="trans"/>
             <call method="setLocales"><argument>%f_devs_locale.allowed_locales%</argument></call>
         </service>
 
-        <service id="f_devs_locale.form.type.locale_text" class="%f_devs_locale.form.type.locale_text.class%">
-            <tag name="form.type" alias="fdevs_locale_text"/>
-            <argument>text</argument>
+        <service id="f_devs_locale.form.type.locale" class="%f_devs_locale.form.type.locale.class%">
+            <tag name="form.type" alias="fdevs_locale"/>
         </service>
 
-        <service id="f_devs_locale.form.type.locale_textarea" class="%f_devs_locale.form.type.locale_text.class%">
-            <tag name="form.type" alias="fdevs_locale_textarea"/>
-            <argument>textarea</argument>
+        <service id="f_devs_locale.form.type.trans_text" class="%f_devs_locale.form.type.trans_text.class%">
+            <tag name="form.type" alias="trans_text"/>
+        </service>
+        <service id="f_devs_locale.form.type.trans_textarea" class="%f_devs_locale.form.type.trans_textarea.class%">
+            <tag name="form.type" alias="trans_textarea"/>
+        </service>
+        <service id="f_devs_locale.form.type.locale_text" class="%f_devs_locale.form.type.locale_text.class%">
+            <tag name="form.type" alias="fdevs_locale_text"/>
         </service>
 
     </services>

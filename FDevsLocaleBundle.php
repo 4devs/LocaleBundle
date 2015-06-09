@@ -3,6 +3,7 @@
 namespace FDevs\LocaleBundle;
 
 use Doctrine\Bundle\MongoDBBundle\DependencyInjection\Compiler\DoctrineMongoDBMappingsPass;
+use FDevs\LocaleBundle\DependencyInjection\Compiler\FormPass;
 use FDevs\LocaleBundle\DependencyInjection\Compiler\SerializerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -18,6 +19,7 @@ class FDevsLocaleBundle extends Bundle
 
         $this->addRegisterMappingsPass($container);
         $container->addCompilerPass(new SerializerPass());
+        $container->addCompilerPass(new FormPass());
     }
 
     /**
