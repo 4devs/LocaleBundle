@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class LocaleController extends Controller
 {
-
     /**
      * Action for locale switch
      *
@@ -37,5 +36,4 @@ class LocaleController extends Controller
 
         return $response;
     }
-
 }

@@ -38,8 +38,15 @@ class FDevsLocaleExtension extends Extension
             $container->setAlias($this->getAlias().'.manager_registry', $config['manager_registry']);
             $loader->load('validator.xml');
         }
+        if (count($config['translation_resources'])) {
+            $container->setParameter($this->getAlias().'.translation_resources', $config['translation_resources']);
+        }
 
         $loader->load('twig_extensions.xml');
+
+        if (isset($config['admin_service']) && $config['admin_service'] !== 'none') {
+            $loader->load(sprintf('admin/%s.xml', $config['admin_service']));
+        }
 
         if (count($config['translator_extensions'])) {
             $trans = $container->getDefinition('f_devs_locale.twig_extension');
