@@ -86,7 +86,7 @@ class TranslationAdmin extends Admin
 
     /**
      * set translator
-     * 
+     *
      * @param Translator $trans
      *
      * @return self
