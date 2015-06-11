@@ -19,6 +19,7 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('f_devs_locale');
+        $adminServices = ['sonata','none'];
 
         $rootNode
             ->children()
@@ -29,6 +30,16 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->arrayNode('translator_extensions')
                     ->defaultValue([])->prototype('scalar')->end()
+                ->end()
+                ->enumNode('admin_service')->values($adminServices)->defaultValue('none')->end()
+                ->arrayNode('translation_resources')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('type')->isRequired()->end()
+                            ->scalarNode('class')->isRequired()->end()
+                            ->scalarNode('service')->cannotBeEmpty()->defaultValue('f_devs_locale.model_manager')->end()
+                        ->end()
+                    ->end()
                 ->end()
             ->end();
 
