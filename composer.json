@@ -21,7 +21,7 @@
     ],
     "require-dev": {},
     "require": {
-        "fdevs/locale": "~2.0"
+        "fdevs/locale": "~2.1"
     },
     "suggest": {
         "doctrine/mongodb-odm-bundle": "to use with mongodb bundle",
