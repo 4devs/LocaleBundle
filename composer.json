@@ -3,7 +3,7 @@
     "license": "MIT",
     "type": "symfony-bundle",
     "description": "Bundle for working with different languages",
-    "homepage": "https://github.com/4devs/LocaleBundle",
+    "homepage": "https://github.com/4devs/locale-bundle",
     "keywords": [
         "languages",
         "locale"
@@ -21,13 +21,14 @@
     ],
     "require-dev": {},
     "require": {
-        "fdevs/locale": "~2.1"
+        "fdevs/locale": "~3.0",
+        "fdevs/locale-bridge": "~0.1"
     },
     "suggest": {
         "doctrine/mongodb-odm-bundle": "to use with mongodb bundle",
         "jms/serializer-bundle": "to use with serializer"
     },
     "autoload": {
-        "psr-4": {"FDevs\\LocaleBundle\\": ""}
+        "psr-4": {"FDevs\\Bundle\\LocaleBundle\\": ""}
     }
 }
