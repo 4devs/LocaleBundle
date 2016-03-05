@@ -8,8 +8,6 @@ Installation and usage is a quick:
 1. Download LocaleBundle using composer
 2. Enable the bundle
 3. Use the bundle
-4. Redirect to locale route
-5. Use with Symfony [Translation](https://github.com/symfony/Translation)
 
 ### Step 1: Download Locale bundle using composer
 
@@ -44,7 +42,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new FDevs\LocaleBundle\FDevsLocaleBundle(),
+        new FDevs\Bundle\LocaleBundle\FDevsLocaleBundle(),
     );
 }
 ```
@@ -109,6 +107,8 @@ namespace UserBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use FDevs\Bridge\Locale\Form\Type\LocaleText\TransTextType;
+use FDevs\Bridge\Locale\Form\Type\LocaleText\TransTextareaType;
 
 class UserType extends AbstractType
 {
@@ -118,17 +118,10 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName', 'trans_text')
-            ->add('lastName', 'trans_text')
-            ->add('about', 'trans_textarea');
+            ->add('firstName', TransTextType::class)
+            ->add('lastName', TransTextType::class)
+            ->add('about', TransTextareaType::class);
      }
-    /**
-     * {@inheritDoc}
-     */
-    public function getName()
-    {
-        return 'fdevs_user';
-    }
 }
 ```
 
@@ -139,48 +132,3 @@ class UserType extends AbstractType
 {{ user.firstName|t }}
 {{ user.lastName|t }}
 ```
-
-### Step 4: Redirect to locale route
-
-add you route
-
-```yml
-#app/config/routing.yml
-home_redirect:
-    pattern: /
-    defaults:
-        _controller: FDevs:LocaleBundle:Locale:switch
-        route: f_devs_core_homepage
-        statusCode: 301
-        useReferrer: false
-
-```
-
-### Step 5: Use with Symfony Translation
-
-#### add configure loader
-
-```yml
-#app/config/routing.yml
-f_devs_locale:
-    allowed_locales: %allowed.locales%
-    admin_service: 'sonata'
-    translation_resources:
-          - {type: 'mongodb', class: 'FDevs\Locale\Model\Translation'}
-          
-sonata_admin:
-    dashboard:
-        groups:
-            label.locale:
-                label_catalogue: FDevsLocaleBundle
-                items:
-                    - f_devs_locale.admin.translation
-```
-
-#### in twig templates
-
-```twig
-{{ 'symfony'|trans({},'FDevsLocaleModelTranslation') }}
-```
-
-do not forget to add a key `symfony` database

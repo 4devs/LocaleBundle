@@ -1,27 +1,35 @@
 <?php
 
-namespace FDevs\LocaleBundle;
+namespace FDevs\Bundle\LocaleBundle;
 
 use Doctrine\Bundle\MongoDBBundle\DependencyInjection\Compiler\DoctrineMongoDBMappingsPass;
-use FDevs\LocaleBundle\DependencyInjection\Compiler\FormPass;
-use FDevs\LocaleBundle\DependencyInjection\Compiler\SerializerPass;
-use FDevs\LocaleBundle\DependencyInjection\Compiler\TranslatorPass;
+use FDevs\Bridge\Locale\DependencyInjection\Compiler\FormPass;
+use FDevs\Bridge\Locale\DependencyInjection\Compiler\JmsSerializerPass;
+use FDevs\Bridge\Locale\DependencyInjection\Compiler\TranslatorPass;
+use FDevs\Bridge\Locale\DependencyInjection\FDevsLocaleExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class FDevsLocaleBundle extends Bundle
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
-
         $this->addRegisterMappingsPass($container);
-        $container->addCompilerPass(new SerializerPass());
+        $container->addCompilerPass(new JmsSerializerPass());
         $container->addCompilerPass(new FormPass());
         $container->addCompilerPass(new TranslatorPass());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function createContainerExtension()
+    {
+        return new FDevsLocaleExtension();
     }
 
     /**
@@ -29,9 +37,9 @@ class FDevsLocaleBundle extends Bundle
      */
     private function addRegisterMappingsPass(ContainerBuilder $container)
     {
-        $refl = new \ReflectionClass('FDevs\Locale\LocaleTextInterface');
+        $refl = new \ReflectionClass('FDevs\Bridge\Locale\FDevsLocale');
 
-        $mappings = [realpath(dirname($refl->getFileName()).'/Resources/doctrine/model') => 'FDevs\Locale\Model'];
+        $mappings = [realpath(dirname($refl->getFileName()).'/Resources/config/doctrine') => 'FDevs\Locale\Model'];
 
         if (class_exists('Doctrine\Bundle\MongoDBBundle\DependencyInjection\Compiler\DoctrineMongoDBMappingsPass')) {
             $container->addCompilerPass(
