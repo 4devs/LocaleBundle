@@ -5,32 +5,10 @@ Getting Started With Locale Bundle
 
 Installation and usage is a quick:
 
-1. Download LocaleBundle using composer
-2. Enable the bundle
-3. Use the bundle
+1. Enable the bundle
+2. Use the bundle
 
-### Step 1: Download Locale bundle using composer
-
-Add Locale bundle in your composer.json:
-
-```json
-{
-    "require": {
-        "fdevs/locale-bundle": "*"
-    }
-}
-```
-
-Now tell composer to download the bundle by running the command:
-
-``` bash
-$ php composer.phar update fdevs/locale-bundle
-```
-
-Composer will install the bundle to your project's `vendor/fdevs` directory.
-
-
-### Step 2: Enable the bundle
+### Step 1: Enable the bundle
 
 Enable the bundle in the kernel:
 
@@ -47,7 +25,7 @@ public function registerBundles()
 }
 ```
 
-### Step 3: Use the bundle
+### Step 2: Use the bundle
 
 #### add translatable field to model
 

@@ -16,7 +16,7 @@
         },
         {
             "name": "4devs Community",
-            "homepage": "https://github.com/4devs/LocaleBundle/contributors"
+            "homepage": "https://github.com/4devs/locale-bundle/contributors"
         }
     ],
     "require-dev": {},
