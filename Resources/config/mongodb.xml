@@ -10,7 +10,8 @@
     </parameters>
 
     <services>
-        <service id="f_devs_locale.model_manager" factory-service="doctrine_mongodb" factory-method="getManager" class="Doctrine\ODM\MongoDB\DocumentManager" public="true">
+        <service id="f_devs_locale.model_manager" class="Doctrine\ODM\MongoDB\DocumentManager" public="true">
+            <factory service="doctrine_mongodb" method="getManager"/>
             <argument>%f_devs_locale.model_manager_name%</argument>
         </service>
 
